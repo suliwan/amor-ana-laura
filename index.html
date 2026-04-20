@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ana Laura ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
@@ -104,9 +105,11 @@ button {
   </div>
 </div>
 
-<audio id="musica" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-</audio>
+<iframe id="player" width="0" height="0"
+src="https://www.youtube.com/embed/uuZE_IRwLNI?autoplay=1&loop=1&playlist=uuZE_IRwLNI"
+frameborder="0"
+allow="autoplay">
+</iframe>
 
 <script>
 const texto = `Amorzinho...
@@ -138,7 +141,6 @@ function iniciar() {
   document.getElementById("mensagem").style.display = "block";
   document.querySelector(".fotos").style.display = "block";
   document.getElementById("contador").style.display = "block";
-  document.getElementById("musica").play();
 
   escrever();
   atualizarTempo();
