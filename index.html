@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Ana Laura ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.container {
+  padding: 40px 20px;
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 4em;
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #ff4b5c, #ff758c);
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255,75,92,0.6);
+}
+
+#mensagem {
+  display: none;
+  margin-top: 30px;
+  font-size: 1.3em;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.8;
+}
+
+.fotos {
+  margin-top: 40px;
+  display: none;
+}
+
+.fotos img {
+  width: 200px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 10px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  transition: 0.3s;
+}
+
+.fotos img:hover {
+  transform: scale(1.05);
+}
+
+.contador {
+  margin-top: 30px;
+  font-size: 1.2em;
+  display: none;
+}
+
+.heart {
+  position: fixed;
+  color: red;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {top:-10%;opacity:1;}
+  100% {top:110%;opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Ana Laura ❤️</h1>
+  <p>Isso é para você...</p>
+
+  <button onclick="iniciar()">Clique aqui 💌</button>
+
+  <div id="mensagem"></div>
+
+  <div class="contador" id="contador"></div>
+
+  <div class="fotos">
+    <img src="img/foto1.jpg.jpeg">
+    <img src="img/foto2.jpg.jpeg">
+  </div>
+</div>
+
+<audio id="musica" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+
+<script>
+const texto = `Amorzinho...
+
+Eu poderia escrever mil coisas aqui...
+mas nenhuma seria suficiente pra explicar o que eu sinto por você.
+
+Você chegou de um jeito tão especial,
+e sem perceber...
+se tornou tudo pra mim.
+
+Seu sorriso muda meu dia.
+Sua voz me acalma.
+Seu jeito me prende.
+
+E no meio de tantas pessoas no mundo...
+foi você quem fez meu coração escolher ficar.
+
+Eu quero estar com você nos dias bons,
+nos dias difíceis,
+e em todos os momentos que ainda vamos viver.
+
+Eu te amo mais do que palavras conseguem dizer ❤️`;
+
+let i = 0;
+
+function iniciar() {
+  document.querySelector("button").style.display = "none";
+  document.getElementById("mensagem").style.display = "block";
+  document.querySelector(".fotos").style.display = "block";
+  document.getElementById("contador").style.display = "block";
+  document.getElementById("musica").play();
+
+  escrever();
+  atualizarTempo();
+}
+
+function escrever() {
+  if (i < texto.length) {
+    document.getElementById("mensagem").innerHTML += texto.charAt(i);
+    i++;
+    setTimeout(escrever, 35);
+  }
+}
+
+// DATA QUE VOCÊS COMEÇARAM (MUDA AQUI)
+const dataInicio = new Date("2025-08-16");
+
+function atualizarTempo() {
+  const agora = new Date();
+  const diff = agora - dataInicio;
+
+  const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const horas = Math.floor(diff / (1000 * 60 * 60)) % 24;
+
+  document.getElementById("contador").innerHTML =
+    `Estamos juntos há ${dias} dias e ${horas} horas ❤️`;
+
+  setTimeout(atualizarTempo, 1000);
+}
+
+function criarCoracao() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(criarCoracao, 200);
+</script>
+
+</body>
+</html>
